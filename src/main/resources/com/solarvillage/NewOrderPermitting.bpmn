@@ -353,7 +353,7 @@ kcontext.setVariable("structuralApp", structuralAppMap);
 kcontext.setVariable("createdDate", java.time.LocalDateTime.now());
 kcontext.setVariable("permitServiceUrl", "http://host.docker.internal:8686/permits");]]></bpmn2:script>
     </bpmn2:scriptTask>
-    <bpmn2:callActivity id="_0874F8E0-0159-4755-9360-19C549C9DBAA" drools:independent="false" drools:waitForCompletion="true" name="Check sPermit Status" calledElement="New_Order_Permitting.CheckPermitStatus">
+    <bpmn2:callActivity id="_0874F8E0-0159-4755-9360-19C549C9DBAA" drools:independent="false" drools:waitForCompletion="true" name="Check sPermit Status" calledElement="NewOrderPermitting.CheckPermitStatus">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
           <drools:metaValue><![CDATA[Check sPermit Status]]></drools:metaValue>
@@ -384,7 +384,7 @@ kcontext.setVariable("sPermitNumber", permitNumber);]]></drools:script>
         <bpmn2:targetRef>sFinalPermitStatus</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
     </bpmn2:callActivity>
-    <bpmn2:callActivity id="_2EF8926C-6121-4D5B-B418-0977F645E985" drools:independent="false" drools:waitForCompletion="true" name="Check ePermit Status" calledElement="New_Order_Permitting.CheckPermitStatus">
+    <bpmn2:callActivity id="_2EF8926C-6121-4D5B-B418-0977F645E985" drools:independent="false" drools:waitForCompletion="true" name="Check ePermit Status" calledElement="NewOrderPermitting.CheckPermitStatus">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
           <drools:metaValue><![CDATA[Check ePermit Status]]></drools:metaValue>
