@@ -12,22 +12,23 @@ public class NewOrder implements java.io.Serializable {
 	private com.solarvillage.SalesRep salesRep;
 	@org.kie.api.definition.type.Label("Property")
 	private com.solarvillage.Property property;
-	@org.kie.api.definition.type.Label("Structural Permit No.")
-	private java.lang.Integer structuralPermitNumber;
 	@org.kie.api.definition.type.Label("HOA Approved")
 	private java.lang.Boolean isHoaApproved;
 
-	@org.kie.api.definition.type.Label("Electrical Permit No.")
-	private java.lang.Integer electricalPermitNumber;
-
-	@org.kie.api.definition.type.Label(value = "Created Date")
+	@org.kie.api.definition.type.Label("Created Date")
 	private java.time.LocalDateTime createdDate;
 
-	@org.kie.api.definition.type.Label(value = "Completed Date")
+	@org.kie.api.definition.type.Label("Completed Date")
 	private java.time.LocalDateTime completedDate;
 
-	@org.kie.api.definition.type.Label(value = "Completed Status")
+	@org.kie.api.definition.type.Label("Completed Status")
 	private java.lang.String completedStatus;
+
+	@org.kie.api.definition.type.Label(value = "Electrical Permit")
+	private com.solarvillage.ResidentialPermit electricalPermit;
+
+	@org.kie.api.definition.type.Label(value = "Structural Permit")
+	private com.solarvillage.ResidentialPermit structuralPermit;
 
 	public NewOrder() {
 	}
@@ -48,30 +49,12 @@ public class NewOrder implements java.io.Serializable {
 		this.property = property;
 	}
 
-	public java.lang.Integer getStructuralPermitNumber() {
-		return this.structuralPermitNumber;
-	}
-
-	public void setStructuralPermitNumber(
-			java.lang.Integer structuralPermitNumber) {
-		this.structuralPermitNumber = structuralPermitNumber;
-	}
-
 	public java.lang.Boolean getIsHoaApproved() {
 		return this.isHoaApproved;
 	}
 
 	public void setIsHoaApproved(java.lang.Boolean isHoaApproved) {
 		this.isHoaApproved = isHoaApproved;
-	}
-
-	public java.lang.Integer getElectricalPermitNumber() {
-		return this.electricalPermitNumber;
-	}
-
-	public void setElectricalPermitNumber(
-			java.lang.Integer electricalPermitNumber) {
-		this.electricalPermitNumber = electricalPermitNumber;
 	}
 
 	public java.time.LocalDateTime getCreatedDate() {
@@ -98,22 +81,40 @@ public class NewOrder implements java.io.Serializable {
 		this.completedStatus = completedStatus;
 	}
 
+	public com.solarvillage.ResidentialPermit getElectricalPermit() {
+		return this.electricalPermit;
+	}
+
+	public void setElectricalPermit(
+			com.solarvillage.ResidentialPermit electricalPermit) {
+		this.electricalPermit = electricalPermit;
+	}
+
+	public com.solarvillage.ResidentialPermit getStructuralPermit() {
+		return this.structuralPermit;
+	}
+
+	public void setStructuralPermit(
+			com.solarvillage.ResidentialPermit structuralPermit) {
+		this.structuralPermit = structuralPermit;
+	}
+
 	public NewOrder(com.solarvillage.SalesRep salesRep,
 			com.solarvillage.Property property,
-			java.lang.Integer structuralPermitNumber,
 			java.lang.Boolean isHoaApproved,
-			java.lang.Integer electricalPermitNumber,
 			java.time.LocalDateTime createdDate,
 			java.time.LocalDateTime completedDate,
-			java.lang.String completedStatus) {
+			java.lang.String completedStatus,
+			com.solarvillage.ResidentialPermit electricalPermit,
+			com.solarvillage.ResidentialPermit structuralPermit) {
 		this.salesRep = salesRep;
 		this.property = property;
-		this.structuralPermitNumber = structuralPermitNumber;
 		this.isHoaApproved = isHoaApproved;
-		this.electricalPermitNumber = electricalPermitNumber;
 		this.createdDate = createdDate;
 		this.completedDate = completedDate;
 		this.completedStatus = completedStatus;
+		this.electricalPermit = electricalPermit;
+		this.structuralPermit = structuralPermit;
 	}
 
 }
