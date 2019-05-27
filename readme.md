@@ -2,7 +2,7 @@
 
 This project has been developed on jBPM 7.22.0 Final and it was not tested in other versions.
 
-## Deployment
+# Deployment
 Please follow below steps to deploy this project to jBPM 7.22.0 Final:
 - Log into jBPM as admin
 - Create a space named 'SolarVillage'
@@ -20,7 +20,7 @@ The Spring Boot app will run on port 8686, therefore make sure no other app is l
 - If the jBPM installation is not running from Docker, please edit the ``etc/hosts`` file and add the following line so that the Business Process know the which of the Spring Boot REST API's service is running from - that is the localhost.
 ```127.0.0.1    host.docker.internal```
 
-## Business Process Execution
+# Business Process Execution
 - Once the project is deployed, create a new Process Instance by invoking the curl command:
 ``curl -X POST "http://localhost:8080/kie-server/services/rest/server/containers/new-order-permitting_2.0.0-SNAPSHOT/processes/NewOrderPermitting.NewOrderPermitting/instances" -H "accept: application/json" -H "content-type: application/json" -d "{ \"salesRep\" : { \"com.solarvillage.SalesRep\": { \"name\" : \"Joe Carioca\", \"email\": \"joe@joe\" } }, \"property\" : { \"com.solarvillage.Property\": { \"customer\" : { \"com.solarvillage.Customer\": { \"name\": \"Donald Duck\", \"email\": \"donald@duck\" } }, \"address\": \"123 Disney St, Anaheim\", \"postcode\": \"12345\" } }}" -u "wbadmin:wbadmin"``
 - Write down the return process instance ID, or alternatively query below.
@@ -30,8 +30,11 @@ The Spring Boot app will run on port 8686, therefore make sure no other app is l
 - Once submitted the Business Process (BP) will execute two REST requests to the ``gov-residential-permitting`` REST APIs and be returned the permit information.
 - Notice the rolling logs from the gov-residential-permitting Spring Boot application.
 
-### Permit Approval Scenarios
-For the scenario where both permits are APPROVED:
+# Permit Approval Scenarios
+## APPROVED Scenarios
+For the scenario where both permits are APPROVED, the BP will send two requests for permit creation to the mock service. The BP will then poll the status of the permits every 10 seconds to check the status. Once both permits are approved, a HOA approval task is created. In the case where HOA approval is given, the BP will continue and finish with NewOrder status set to COMPLETED.
+
+Follow below steps for this scenario:
 - Notice the Spring Boot logs and take note of the permit numbers returned by the REST API's
 - Run the following curl command to set the status to approved:
 ``curl --request PATCH
@@ -65,6 +68,7 @@ Replace the id **48** with the actual task id
 ``curl -X PUT "http://localhost:8080/kie-server/services/rest/server/containers/new-order-permitting_2.0.0-SNAPSHOT/tasks/48/states/completed" -H "accept: application/json" -H "content-type: application/json" -d "{}"``
 - Once HOA Approved task is completed, the BP should finish and display the results in the jBPM logs with the status and other details.
 
+## DENIED Scenario
 For the scenario where one of the permits is DENIED:
 - Create a new process instance:
 ``curl -X POST "http://localhost:8080/kie-server/services/rest/server/containers/new-order-permitting_2.0.0-SNAPSHOT/processes/NewOrderPermitting.NewOrderPermitting/instances" -H "accept: application/json" -H "content-type: application/json" -d "{ \"salesRep\" : { \"com.solarvillage.SalesRep\": { \"name\" : \"Joe Carioca\", \"email\": \"joe@joe\" } }, \"property\" : { \"com.solarvillage.Property\": { \"customer\" : { \"com.solarvillage.Customer\": { \"name\": \"Donald Duck\", \"email\": \"donald@duck\" } }, \"address\": \"123 Disney St, Anaheim\", \"postcode\": \"12345\" } }}" -u "wbadmin:wbadmin"``
