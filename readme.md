@@ -27,7 +27,6 @@ The Spring Boot app will run on port 8686, therefore make sure no other app is l
 - Query the process instance details:
 ``curl -X GET "http://localhost:8080/kie-server/services/rest/server/containers/new-order-permitting_2.0.0-SNAPSHOT/processes/instances?status=1&page=0&pageSize=10&sortOrder=true" -H "accept: application/json" -u "wbadmin:wbadmin"``
 - Looks for process instance with ID: ``NewOrderPermitting.NewOrderPermitting`` and take note of the ``process-instance-id``
-- Enter all the required details for Sales Rep and Property Information
 - Once submitted the Business Process (BP) will execute two REST requests to the ``gov-residential-permitting`` REST APIs and be returned the permit information.
 - Notice the rolling logs from the gov-residential-permitting Spring Boot application.
 
