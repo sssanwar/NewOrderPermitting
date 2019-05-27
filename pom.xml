@@ -51,6 +51,12 @@
       <version>7.18.0.Final</version>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>com.solarvillage</groupId>
+      <artifactId>custom-event-listener</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
